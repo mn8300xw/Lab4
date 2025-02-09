@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <label for="new-text">Enter some text to add to the list</label>
+    <input type="text" id="new-text" name="new-text" maxlength=50></input>
+    <button id="add-text">Add</button>
+
+    <ul id="list-of-text"></ul>
+
+    <button id="clear">Clear</button>
+
+    <script>
+
+        let textInput = document.querySelector('#new-text')
+        let addButton = document.querySelector('#add-text')
+        let textList = document.querySelector('#list-of-text')
+        let clearButton = document.querySelector('#clear')
+
+        let elementsInList = 0
+        let maxElements = 10
+
+        document.addEventListener('keyup', function() {
+            if (event.keyCode === 13) {
+                addButton.click()
+            }
+        })
+
+        addButton.addEventListener('click', function() {
+            let newTest = textInput.value
+            if (newTest.length === 0){
+                alert('Enter some text')
+            }
+
+            if (elementsInList > maxElements){
+                alert('no more elements can be added')
+                return
+            }
+
+            let newText = textInput.value
+            console.log(newText)
+            let newListItem = document.createElement('li')
+            newListItem.innerHTML = newText
+            textList.appendChild(newListItem)
+            textInput.value = ''
+
+            elementsInList++
+        })
+
+        clearButton.addEventListener('click', function() {
+            textList.innerHTML = ''
+        })
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <h2 id="width"></h2>
+    <button>Click here!</button>
+
+  <script>
+    let button = document.querySelector('button')
+
+    button.addEventListener('click', function() {
+        alert('You clicked the button')
+        button.innerHTML = 'You clicked the button!'
+        button.style.backgroundColor = 'red'
+    })
+    function displayWidth() {
+        let width = document.body.scrollWidth;
+        let widthDisplayEl = document.querySelector('#width')
+        widthDisplayEl.innterHTML = `Window width = ${width} pixels`
+    }
+
+    displayWidth();
+    window.addEventListener('resize', displayWidth)
+
+  </script>
+
+</body>
+</html>

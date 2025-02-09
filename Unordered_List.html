@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unordered List</title>
+</head>
+<body>
+    <label for="new-text">Enter some text to add to the list</label>
+    <input type="text" id="new-text" name="new-text" onKeyPress=check_length(this.form) ></input>
+    <button id="add-text">Add</button>
+
+    <ul id="list-of-text"></ul>
+
+    <button id="clear">Clear</button>
+
+    <script>
+
+        let textInput = document.querySelector('#new-text')
+        let addButton = document.querySelector('#add-text')
+        let textList = document.querySelector('#list-of-text')
+        let clearButton = document.querySelector('#clear')
+
+        let elementsInList = 0
+        let maxElements = 10
+
+        document.addEventListener('keyup', function() {
+            if (event.keyCode === 13) {
+                addButton.click()
+            }
+        })
+
+        addButton.addEventListener('click', function() {
+            let newTest = textInput.value
+            if (newTest.length === 0) {
+                alert('Enter some text')
+                return false;
+            }
+
+            if (elementsInList > maxElements){
+                alert('no more elements can be added')
+                return
+            }
+
+            let newText = textInput.value
+            console.log(newText)
+            let newListItem = document.createElement('li')
+            newListItem.innerHTML = newText
+            textList.appendChild(newListItem)
+            textInput.value = ''
+
+            elementsInList++
+        })
+
+        clearButton.addEventListener('click', function() {
+            textList.innerHTML = ''
+        })
+
+
+        const inputField = document.getElementById('myInput');
+        const message = document.getElementById('message');
+
+        textInput.addEventListener('add-text', function(event) {
+            if (inputField.value.length < 1 || inputField.value.length > 50) {
+                event.preventDefault();
+                message.textContent = 'Please enter between  1 and 50 characters.';
+            }
+        });
+
+        function check_length(my_form)
+        {
+            let lengthText = document.elements['new-text'].value.length
+            maxLen = 50;
+            if (lengthText.value.length >= maxLen)
+            {
+                alert("You have reached your maximum limit of characters allowed");
+            }
+        }
+    </script>
+</body>
+</html>
